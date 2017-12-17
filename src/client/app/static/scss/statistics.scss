@@ -1,0 +1,23 @@
+.stats {
+    .table {
+        /*width: 95%;
+        max-width: 1250px;*/
+        width: 90%;
+        max-width: 850px;
+        margin: auto;
+
+        &.celled thead tr th {
+            background-color: $nt-darkgrey;
+            color: #e7e7e7;
+            border-left: none;
+        }
+
+        tr.woozy td {
+            background-color: fade-out($status-woozy, 0.9);
+        }
+
+        tr.sick td {
+            background-color: fade-out($status-sick, 0.9);
+        }
+    }
+}

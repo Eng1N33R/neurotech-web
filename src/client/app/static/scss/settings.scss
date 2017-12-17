@@ -1,0 +1,11 @@
+.settings {
+    .settings-inner {
+        @include nt-page-inner;
+        border: none;
+
+        h3 {
+            border-bottom: 1px solid #bbb;
+            padding-bottom: 0.5rem;
+        }
+    }
+}

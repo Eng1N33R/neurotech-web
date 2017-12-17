@@ -1,0 +1,30 @@
+$nt-green: #46b29a;
+$nt-green-focus: #3ba68e;
+$nt-darkgrey: #333b46;
+$nt-darkgrey-highlight: #2b323b;
+
+$status-healthy: #43b581;
+$status-woozy: #f0e547;
+$status-sick: #f04747;
+$status-nodata: #aaa;
+
+@mixin nt-btn {
+  background-color: #46b29a;
+  color: #fff;
+  border-radius: 0;
+  border: 0;
+
+  &:hover, &:active, &:focus {
+    background-color: #3ba68e;
+    color: #fff;
+  }
+}
+
+@mixin nt-page-inner {
+  width: 90%;
+  max-width: 850px;
+  margin: auto;
+  padding: 10px 15px;
+  border: 1px solid #bbb;
+  border-radius: 7px;
+}

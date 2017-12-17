@@ -1,0 +1,65 @@
+.nt-login-form {
+  min-height: 100%;
+  margin: 0;
+  text-align: center;
+  padding: 30px;
+
+  img {
+    margin-bottom: 30px;
+    width: 80%;
+    max-width: 410px;
+  }
+
+  .field {
+    position: relative;
+
+    i {
+      color: #385b65;
+      font-size: 3.5vmin;
+      position: absolute;
+      top: 2.7vmin;
+      padding-left: 3vmin;
+
+      @media (max-width: 767px) {
+        padding-left: 4vmin;
+        top: 3vmin;
+      }
+    }
+
+    input.text-field, input.text-field:focus {
+      background-color: #333b46;
+      border: 1px #486e79 solid;
+      color: #afc9d0;
+      //padding: 10px 30px 10px 60px;
+      //font-size: 16pt;
+      padding: 2vmin 5vmin 2vmin 8vmin;
+      font-size: 2.5vmin;
+      width: 80%;
+      max-width: 410px;
+
+      @media (max-width: 767px) {
+        padding: 2vmin 5vmin 2vmin 9vmin;
+        font-size: 3.5vmin;
+      }
+
+      &::placeholder {
+        color: #afc9d0;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .button-line {
+    margin-top: 30px;
+  }
+
+  .copyright {
+    margin-top: 30px;
+    color: #486770;
+    font-size: 1.2vmin;
+
+    @media (max-width: 767px) {
+      font-size: 2vmin;
+    }
+  }
+}
