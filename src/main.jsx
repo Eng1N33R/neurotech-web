@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { loadTranslations, setLocale, syncTranslationWithStore, i18nReducer } from 'react-redux-i18n';
-import reducers from './data/reducers.jsx';
+import * as neurotech from './data/reducers';
+import { updateSettings } from './data/actions';
 import cookie from 'react-cookies';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -21,9 +22,12 @@ const translations = {
         pages: {
             home: 'Главная',
             login: 'Вход',
-            monitor: 'Наблюдение',
+            monitor: 'Мониторинг',
+            monitor_note: 'Анализ сетевого трафика и обнаружение атак.',
             statistics: 'Статистика',
-            settings: 'Настройки'
+            statistics_note: 'Анализ и аудит исторических данных об атаках.',
+            settings: 'Настройки',
+            settings_note: 'Изменение параметров системы обнаружения атак.',
         },
         settings: {
             titles: {
@@ -40,19 +44,38 @@ const translations = {
     }
 }
 
+const defaultSettings = {
+    monitor: {
+        graph: {
+            woozy: 10,
+            sick: 20,
+        },
+        timeline: {
+            woozy: 200,
+            sick: 400,
+        }
+    }
+}
+
 //const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 //const store = createStoreWithMiddleware(reducers);
 const store = createStore(
     combineReducers({
-        ...reducers,
+        ...neurotech,
         i18n: i18nReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(reduxThunk)
 )
+
+const unsubscribe = store.subscribe(() =>
+    console.log(store.getState())
+)
+
 syncTranslationWithStore(store);
 store.dispatch(loadTranslations(translations));
 store.dispatch(setLocale('ru-RU'));
+store.dispatch(updateSettings(defaultSettings));
 
 const token = cookie.load('token');
 

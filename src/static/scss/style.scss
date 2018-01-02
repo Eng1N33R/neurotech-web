@@ -21,6 +21,10 @@ a {
   }
 }
 
+#app-container {
+  padding-bottom: 50px;
+}
+
 .button {
   .ui.menu.navbar .item & {
     @include nt-btn;
@@ -38,11 +42,10 @@ a {
 }
 
 div.navbar-container {
-  background: $nt-darkgrey url(~assets/img/texture.png) no-repeat;
+  background: $nt-darkgrey url(~assets/img/texture.png) repeat-x;
 }
 
 .ui.menu.navbar {
-  // Test for centered
   width: 90%;
   max-width: 850px;
   margin: auto;
@@ -62,10 +65,6 @@ div.navbar-container {
 
   .item.navbar-brand {
     height: 110px;
-    // Test for centered
-    /*@media (min-width: 768px) {
-      padding-left: 60px;
-    }*/
 
     img {
       height: 80px;
@@ -91,19 +90,12 @@ div.navbar-container {
 }
 
 .ui.stackable.grid.nt-dashboard-grid {
-  // Test for centered
   width: 90%;
   max-width: 850px;
   margin: auto;
   @media (max-width: 768px) {
     width: 100%;
   }
-
-  /*@media (min-width: 768px) {
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 30px;
-  }*/
 
   a.home-img {
     float: left;
@@ -158,6 +150,7 @@ div.navbar-container {
   .ui.breadcrumb {
     margin-bottom: 10px;
     a {
+      font-weight: bold;
       color: $nt-green;
       &:hover, &:focus, &:active {
         color: $nt-green-focus;
@@ -186,6 +179,65 @@ span.note {
     display: block;
     font-weight: 700;
     margin-bottom: 4px;
+  }
+}
+
+.inner {
+  @include nt-page-inner;
+
+  .status-nodata {
+    clear: both;
+    margin-top: 3rem;
+    text-align: center;
+    border: 1px dashed #bbb;
+    color: #bbb;
+    font-size: 2.5rem;
+    padding: 150px 0;
+  }
+
+  .title {
+    @media (max-width: 767px) {
+      display: block;
+      float: none;
+    }
+    float: left;
+    font-weight: bold;
+    font-size: 14pt;
+  }
+
+  .health-status {
+    @media (max-width: 767px) {
+      display: block;
+      float: none;
+      margin-top: 5px;
+    }
+    float: right;
+    font-size: 14pt;
+  }
+
+  .healthy {
+    color: $status-healthy;
+  }
+
+  .woozy {
+    color: $status-woozy;
+  }
+
+  .sick {
+    color: $status-sick;
+  }
+
+  .nodata {
+    color: $status-nodata;
+  }
+}
+
+.chart {
+  margin-bottom: 30px;
+
+  svg {
+    margin-top: 10px;
+    margin-left: -20px;
   }
 }
 

@@ -2,11 +2,11 @@ const express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
     logger = require('morgan'),
-    config = require('./src/server/config/config.js');
+    config = require('./server/config/config.js');
 
 require('dotenv').config();
 
-const apiRouter = require('./src/server/routes/api.js');
+const apiRouter = require('./server/routes/api.js');
 
 const app = express();
 app.use(express.static(path.join(__dirname, '/dist/')));

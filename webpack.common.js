@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const APP_DIR = path.resolve(__dirname, 'src/client/app');
+const APP_DIR = path.resolve(__dirname, 'src');
 const STATIC_DIR = path.resolve(APP_DIR, 'static');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const PUBLIC_DIR = path.resolve(DIST_DIR, 'public');

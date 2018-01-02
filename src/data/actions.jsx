@@ -8,6 +8,7 @@ export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const SETTINGS_UPDATE = 'SETTINGS_UPDATE';
 
 export const authRequest = credentials => {
     return {
@@ -79,4 +80,11 @@ export const logoutUser = () => {
     return {
         type: AUTH_LOGOUT
     };
+}
+
+export const updateSettings = settings => dispatch => {
+    dispatch({
+        type: SETTINGS_UPDATE,
+        settings
+    });
 }

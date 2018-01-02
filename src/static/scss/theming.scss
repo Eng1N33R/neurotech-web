@@ -10,4 +10,15 @@
     .ui.form input:focus {
         border-color: fade-out($nt-green, 0.5);
     }
+
+    @media only screen and (max-width: 767px) {
+        .ui.table:not(.unstackable) tr {
+            padding: 0;
+            border: none;
+        }
+    }
+
+    .ui.table thead tr:first-child > th {
+        border-radius: 0;
+    }
 }
