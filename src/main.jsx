@@ -25,7 +25,7 @@ const translations = {
             monitor: 'Мониторинг',
             monitor_note: 'Анализ сетевого трафика и обнаружение атак.',
             statistics: 'Статистика',
-            statistics_note: 'Анализ и аудит исторических данных об атаках.',
+            statistics_note: 'Анализ и аудит хронологических данных об атаках.',
             settings: 'Настройки',
             settings_note: 'Изменение параметров системы обнаружения атак.',
         },
@@ -47,12 +47,23 @@ const translations = {
 const defaultSettings = {
     monitor: {
         graph: {
-            woozy: 10,
-            sick: 20,
+            woozy: 30,
+            sick: 125,
         },
         timeline: {
-            woozy: 200,
-            sick: 400,
+            woozy: 0.03,
+            sick: 0.10,
+        }
+    },
+    statistics: {
+        graph: {
+            woozy: 1000,
+            sick: 6000,
+        },
+        table: {
+            woozy: 0.01,
+            sick: 0.06,
+            limit: 5,
         }
     }
 }
@@ -68,9 +79,9 @@ const store = createStore(
     applyMiddleware(reduxThunk)
 )
 
-const unsubscribe = store.subscribe(() =>
+/*const unsubscribe = store.subscribe(() =>
     console.log(store.getState())
-)
+)*/
 
 syncTranslationWithStore(store);
 store.dispatch(loadTranslations(translations));

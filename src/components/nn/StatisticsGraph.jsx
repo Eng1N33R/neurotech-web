@@ -64,7 +64,7 @@ class StatisticsGraph extends React.Component {
         let clrSick = variables.statusSick;
         return (
             <div className="inner chart">
-                <span className="title">Исторический статус (48 часов)</span>
+                <span className="title">Данные о трафике (48 часов)</span>
                 <MonitorStatus status={status} />
                 {this.props.data.length === 0 ? (<div className="status-nodata"><span>Нет данных</span></div>) :
                     (<ResponsiveContainer width="100%" height={300}>

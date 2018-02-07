@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-class MonitorDataProvider extends React.Component {
+class DataProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ class MonitorDataProvider extends React.Component {
 
     componentDidMount() {
         let self = this;
-        axios.get(`http://192.168.1.100:3000/api/stats/${self.props.mode}`, { params: { from: self.props.from, to: self.props.to, resolution: self.props.resolution } }).then(function(res) {
+        axios.get(`http://178.159.39.131:3000/api/stats/${self.props.mode}`, { params: { from: self.props.from, to: self.props.to, resolution: self.props.resolution } }).then(function(res) {
             let data = res.data;
             if (self.props.transform) data = data.map(self.props.transform);
             self.setState({ data });
@@ -24,11 +24,11 @@ class MonitorDataProvider extends React.Component {
     }
 }
 
-MonitorDataProvider.defaultProps = {
+DataProvider.defaultProps = {
     mode: 'abnormal',
 };
 
-MonitorDataProvider.propTypes = {
+DataProvider.propTypes = {
     mode: PropTypes.string.isRequired,
     from: PropTypes.number,
     to: PropTypes.number,
@@ -36,4 +36,4 @@ MonitorDataProvider.propTypes = {
     transform: PropTypes.func,
 }
 
-export default MonitorDataProvider;
+export default DataProvider;
