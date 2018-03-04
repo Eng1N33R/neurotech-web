@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const config = require('../config/config.js');
 
 const pgp = require('pg-promise')();
 const db = pgp({
@@ -25,7 +26,7 @@ router.get('/stats/:mode', function (req, res, next) {
 
     if (req.params.mode !== undefined) query.mode = req.params.mode;
     if (req.query.from !== undefined) query.from = req.query.from;
-    if (req.query.to !== undefined) query.from = req.query.from;
+    if (req.query.to !== undefined) query.to = req.query.to;
     if (req.query.resolution !== undefined) {
         let comps = req.query.resolution.split(' ');
         query.size = parseInt(comps[0]);
@@ -62,5 +63,42 @@ router.get('/stats/:mode', function (req, res, next) {
             console.log(err);
         });
 });
+
+function sendJson(res, data) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(data));
+}
+
+router.get('/judge/monitor/graph/:n', function (req, res, next) {
+    sendJson(res, { woozy: req.params.n > config.limits.monitor.graph.woozy, sick: req.params.n > config.limits.monitor.graph.sick });
+});
+router.get('/judge/monitor/timeline/:n', function (req, res, next) {
+    sendJson(res, { woozy: req.params.n > config.limits.monitor.timeline.woozy, sick: req.params.n > config.limits.monitor.timeline.sick });
+});
+router.get('/judge/statistics/graph/:n', function (req, res, next) {
+    sendJson(res, { woozy: req.params.n > config.limits.statistics.graph.woozy, sick: req.params.n > config.limits.statistics.graph.sick });
+});
+router.get('/judge/statistics/table/:n', function (req, res, next) {
+    sendJson(res, { woozy: req.params.n > config.limits.statistics.table.woozy, sick: req.params.n > config.limits.statistics.table.sick });
+});
+
+router.get('/limits/monitor/graph', function (req, res, next) {
+    sendJson(res, { woozy: config.limits.monitor.graph.woozy, sick: config.limits.monitor.graph.sick });
+});
+router.get('/limits/monitor/timeline', function (req, res, next) {
+    sendJson(res, { woozy: config.limits.monitor.timeline.woozy, sick: config.limits.monitor.timeline.sick });
+});
+router.get('/limits/statistics/graph', function (req, res, next) {
+    sendJson(res, { woozy: config.limits.statistics.graph.woozy, sick: config.limits.statistics.graph.sick });
+});
+router.get('/limits/statistics/table', function (req, res, next) {
+    sendJson(res, { woozy: config.limits.statistics.table.woozy, sick: config.limits.statistics.table.sick });
+});
+
+/*router.get('/judge', function (req, res, next) {
+    woozyN = (x) => (97*x/282 + 440/47);
+    sickN = (x) => (25*x/12);
+
+});*/
 
 module.exports = router;
