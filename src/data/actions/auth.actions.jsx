@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookie from 'react-cookies';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://nt.engi.io/api';
 
 export const errorHandler = error => {
     return function(dispatch) {
@@ -35,7 +35,7 @@ export const loginUser = (username, password) => {
         axios.post(`${API_URL}/auth/login`, { username, password })
             .then(response => {
                 cookie.save('token', response.data.token, { path: '/' });
-                window.location.href = 'http://localhost:3000/';
+                window.location.href = 'https://nt.engi.io/';
                 dispatch({ type: 'AUTH_LOGIN' });
             })
             .catch((error) => {
@@ -46,7 +46,7 @@ export const loginUser = (username, password) => {
 
 export const logoutUser = () => {
     cookie.remove('token', { path: '/' });
-    window.location.href = 'http://localhost:3000/login';
+    window.location.href = 'https://nt.engi.io/login';
     return {
         type: 'AUTH_LOGOUT'
     };

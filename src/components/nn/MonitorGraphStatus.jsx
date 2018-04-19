@@ -5,7 +5,7 @@ import MonitorStatus from 'components/nn/MonitorStatus';
 
 import variables from '!!sass-variable-loader!assets/scss/general.scss';
 
-import moment from 'moment';
+import moment from 'moment-timezone';
 moment.locale('ru-RU');
 
 class MonitorGraphStatus extends React.Component {

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import moment from 'moment-timezone';
+moment.locale('ru-RU');
 
 class DataProvider extends React.Component {
     constructor(props) {
@@ -12,8 +14,8 @@ class DataProvider extends React.Component {
 
     componentDidMount() {
         let self = this;
-        axios.get(`http://178.159.39.131:3000/api/stats/${self.props.mode}`, { params: { from: self.props.from, to: self.props.to, resolution: self.props.resolution } }).then(function(res) {
-            let data = res.data;
+        axios.get(`https://nt.engi.io/api/stats/${self.props.mode}`, { params: { from: self.props.from, to: self.props.to, resolution: self.props.resolution } }).then(function(res) {
+            let data = res.data.map((x) => ({ time: moment(x.time).tz('Europe/Moscow').format(), ...x }));
             if (self.props.transform) data = data.map(self.props.transform);
             self.setState({ data });
         });

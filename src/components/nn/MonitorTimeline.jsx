@@ -14,11 +14,9 @@ class MonitorTimeline extends React.Component {
     }
 
     render() {
-        console.log(this.props.data);
         this.props.data.forEach((point, i) => {
             this.status[i] = 'healthy'
             if (point === undefined || (point.healthy + point.abnormal) === 0) this.status[i] = 'nodata';
-            console.log(i + "," + point.ratio);
             if ((point.healthy + point.abnormal) > 0 && this.overall === 'nodata') this.overall = 'healthy';
             if (point.ratio >= this.props.settings.woozy && point.ratio < this.props.settings.sick) {
                 this.status[i] = 'woozy';

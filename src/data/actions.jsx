@@ -2,7 +2,7 @@ import axios from 'axios';
 import cookie from 'react-cookies';
 import { push } from 'react-router-redux';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://nt.engi.io/api';
 
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

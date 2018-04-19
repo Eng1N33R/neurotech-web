@@ -5,6 +5,7 @@ import Navigation from 'components/Navigation';
 import Home from 'components/Home';
 import MonitorContainer from 'components/nn/MonitorContainer';
 import StatisticsContainer from 'components/nn/StatisticsContainer';
+import GeoContainer from 'components/geo/GeoContainer';
 import Settings from 'components/nn/Settings';
 
 class App extends React.Component {
@@ -16,7 +17,7 @@ class App extends React.Component {
                     <Route exact path='/' component={Home} />
                     <Route path='/monitor' component={MonitorContainer} />
                     <Route path='/statistics' component={StatisticsContainer} />
-                    <Route path='/settings' component={Settings} />
+                    <Route path='/geodata' component={GeoContainer} />
                 </Switch>
             </div>
         )

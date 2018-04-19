@@ -4,7 +4,7 @@ import { curveCardinal } from 'd3-shape';
 
 import variables from '!!sass-variable-loader!assets/scss/general.scss';
 
-import moment from 'moment';
+import moment from 'moment-timezone';
 moment.locale('ru-RU');
 
 class MonitorGraphLoad extends React.Component {

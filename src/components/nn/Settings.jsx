@@ -5,9 +5,6 @@ import LabeledToggle from 'components/LabeledToggle';
 import { Menu, Form, Checkbox } from 'semantic-ui-react';
 import { Translate } from 'react-redux-i18n';
 
-import moment from 'moment';
-moment.locale('ru-RU');
-
 export default () => (
     <div className="settings">
         <div className="settings-inner">

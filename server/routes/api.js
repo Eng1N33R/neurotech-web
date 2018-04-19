@@ -9,8 +9,10 @@ const db = pgp({
     password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
 });
+// disable automatic time zone adjustment (seriously?)
+pgp.pg.types.setTypeParser(1114, str => moment.utc(str).format());
 
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 router.get('/stats/:mode', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -94,6 +96,20 @@ router.get('/limits/statistics/graph', function (req, res, next) {
 router.get('/limits/statistics/table', function (req, res, next) {
     sendJson(res, { woozy: config.limits.statistics.table.woozy, sick: config.limits.statistics.table.sick });
 });
+
+router.get('/geodata/aggregated', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    db.any("select latitude, longitude, count(*) from geodata group by latitude, longitude;")
+        .then(function (data) {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(data));
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+})
 
 /*router.get('/judge', function (req, res, next) {
     woozyN = (x) => (97*x/282 + 440/47);
